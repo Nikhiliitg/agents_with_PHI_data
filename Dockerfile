@@ -19,4 +19,6 @@ RUN echo "Checking Streamlit version..." && streamlit --version
 EXPOSE 8501
 
 # Run the Streamlit app
-ENTRYPOINT ["python", "-m", "streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+ENV PATH="/usr/local/bin:$PATH"
+CMD ["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+
