@@ -1,3 +1,11 @@
 phidata
 yfinance
 packaging
+streamlit
+phi
+groq
+yfinance
+tavily
+python-dotenv
+pandas
+requests
