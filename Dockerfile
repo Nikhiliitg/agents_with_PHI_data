@@ -7,21 +7,16 @@ WORKDIR /app
 # Copy all files from the local directory to the container
 COPY . .
 
-# Install all required dependencies
-RUN pip install --no-cache-dir \
-    streamlit \
-    phi \
-    phi-agent \
-    phi-model-groq \
-    phi-tools-yfinance \
-    phi-tools-tavily \
-    python-dotenv \
-    io \
-    sys \
-    os
+# Upgrade pip and install required dependencies
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir streamlit
+
+# Ensure Streamlit is in PATH
+RUN echo "Checking Streamlit version..." && streamlit --version
 
 # Expose the port used by Streamlit
 EXPOSE 8501
 
 # Run the Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+ENTRYPOINT ["python", "-m", "streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
