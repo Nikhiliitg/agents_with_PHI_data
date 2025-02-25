@@ -1,1 +1,5 @@
 streamlit
+phidata
+groq
+tavily-python
+python-dotenv
